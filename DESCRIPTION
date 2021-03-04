@@ -2,26 +2,25 @@ Package: easymlr
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Ifeanyi",
+    c(person(given = "Ifeanyi",
            family = "Anene",
-           role = c("aut", "cre"),
-           email = "ifyanene@student.ubc.ca",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           role = c("aut"),
+           email = "ifyanene@student.ubc.ca"
+           ),
     person(given = "Lara",
            family = "Habashy",
-           role = c("aut", "cre"),
-           email = "laraahabashy@gmail.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           role = c("aut"),
+           email = "laraahabashy@gmail.com"
+           ),
     person(given = "Sakshi",
            family = "Jain",
-           role = c("aut", "cre"),
-           email = "hellosakshi@gmail.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           role = c("aut"),
+           email = "hellosakshi@gmail.com"
+           ),
     person(given = "Zhenrui",
            family = "Yu",
            role = c("aut", "cre"),
-           email = "yuzhenrui1996@gmail.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "yuzhenrui1996@gmail.com"))
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
