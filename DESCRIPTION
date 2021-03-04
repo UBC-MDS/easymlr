@@ -6,17 +6,17 @@ Authors@R:
            family = "Anene",
            role = c("aut", "cre"),
            email = "ifyanene@student.ubc.ca",
-           comment = c(ORCID = "YOUR-ORCID-ID")),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
     person(given = "Lara",
            family = "Habashy",
            role = c("aut", "cre"),
            email = "laraahabashy@gmail.com",
-           comment = c(ORCID = "YOUR-ORCID-ID")),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
     person(given = "Sakshi",
            family = "Jain",
            role = c("aut", "cre"),
            email = "hellosakshi@gmail.com",
-           comment = c(ORCID = "YOUR-ORCID-ID")),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
     person(given = "Zhenrui",
            family = "Yu",
            role = c("aut", "cre"),
