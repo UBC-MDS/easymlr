@@ -28,7 +28,7 @@ devtools::install_github("UBC-MDS/easymlr")
 
 ## Features
 
-This package contains four functions that accept a pandas DataFrame. All functions can be used on a dataset with numerical and categorical features. Each function will have it's own required and optional arguments.
+This package contains four functions. All functions can be used on a dataset with numerical and categorical features. Each function will have it's own required and optional arguments.
 
 - eda: EDA data analysis will split the original data into train and test dataset and will generate a statistical report such as correlation between the variables, number of missing data, class imbalance and type of data present in the dataset.
 
@@ -39,7 +39,7 @@ This package contains four functions that accept a pandas DataFrame. All functio
 - Feature selection: This will remove redundant features based on the forward selection.
 
 ## Relevance to the R Ecosystem
-To our knowledge, there is no general-purpose library for performing the above task together in the Python ecosystem.
+To our knowledge, there is no general-purpose library for performing the above task together in the R ecosystem.
 
 ## Dependencies
 
