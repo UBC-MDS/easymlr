@@ -7,7 +7,8 @@
 
 <!-- badges: end -->
 
-The goal of easymlr is to …
+easymlr is an open-source library designed to perform exploratory data analysis, to help with missing data imputation and to give baseline models. Also, it assists in feature selection which is a common problem when undertaking a data science or machine learning analysis.
+
 
 ## Installation
 
@@ -54,10 +55,10 @@ To our knowledge, there is no general-purpose library for performing the above t
 
 Development leaders:
 
-    Ifeanyi Anene
-    Lara Habashy
-    Sakshi Jain
-    Zhenrui Yu
+- Ifeanyi Anene
+- Lara Habashy
+- Sakshi Jain
+- Zhenrui Yu
 
 We welcome and recognize all contributions. You can see a list of current contributors in the contributors tab. If you would like to contribute, please view our contributing guidelines and get familiar with the Github flow workflow.
 
