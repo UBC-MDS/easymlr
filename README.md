@@ -34,7 +34,7 @@ This package contains four functions. All functions can be used on a dataset wit
 
 - Data imputation: It will handle missing data in the data frame.
 
-- Baseline Function: Baseline function will give users a quick check of the performance of the selected sklearn models as a baseline for further model training.
+- Baseline Function: Baseline function will give users a quick check of the performance of the selected models as a baseline for further model training.
 
 - Feature selection: This will remove redundant features based on the forward selection.
 
