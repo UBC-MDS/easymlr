@@ -36,6 +36,12 @@ feature_select <- function(X_train, y_train, threshold=0.05){
     stop("X and y have inconsistent numbers of samples. X:",
          dim(X_train)[1], ", y:", length(y_train))
   }
+  if (!(class(threshold) == "numeric")) {
+    stop("Threshold must be numeric")
+  }
+  if (!(length(threshold) == 1)) {
+    stop("Threshold must be a single value")
+  }
 
   # initialize variables
   maxper=list()

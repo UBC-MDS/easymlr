@@ -19,7 +19,8 @@ test_feature_select <- function(){
   # set seed for reproducible output
   set.seed(1230)
   
-  best_features <- feature_select(X_train, y_train, threshold = 0.05)
+  threshold = 0.05
+  best_features <- feature_select(X_train, y_train, threshold = threshold)
   
   testthat::expect_setequal(best_features[1], "lstat")
   testthat::expect_true(length(best_features)<= length(as.list(colnames(X_train))))
@@ -27,6 +28,9 @@ test_feature_select <- function(){
   testthat::expect_true(is.character(best_features))
   testthat::expect_true(is.character(best_features[1]))
   testthat::expect_true(class(best_features[1]) == "character")
+  testthat::expect_true(is.numeric(threshold))
+  testthat::expect_true(class(threshold) == "numeric")
+  testthat::expect_true(length(threshold) == 1)
 }
 
 #' Test feature selection input
