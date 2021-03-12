@@ -49,7 +49,6 @@ feature_select <- function(X_train, y_train, threshold=0.05){
     stop("Threshold must be a number between 0 and 1")
   }
 
-
   # initialize variables
   maxper=list()
   initial_features = as.list(colnames(X_train))
@@ -61,43 +60,42 @@ feature_select <- function(X_train, y_train, threshold=0.05){
   highest= list()
 
   for (j in 1:max_features){
-    remaining_features = initial_features[names(initial_features) %in% names(best_features) == FALSE]
+    remaining_features <- initial_features[names(initial_features) %in% names(best_features) == FALSE]
     temp = vector(mode = "list", length = length(remaining_features))
-    names(temp) = unlist(remaining_features)
+    names(temp) <- unlist(remaining_features)
 
     for (temp_feature in remaining_features){
 
-      select_features = unique(c(best_features, temp_feature))
-      names(select_features) = unlist(select_features)
-      select_features = as.character(select_features)
+      select_features <- unique(c(best_features, temp_feature))
+      names(select_features) <- unlist(select_features)
+      select_features <- as.character(select_features)
 
-      new_df = X_train %>% select(select_features)
-      new_df = cbind(new_df, y_train)
+      new_df <- X_train %>% select(select_features)
+      new_df <- cbind(new_df, y_train)
 
       n <- colnames(new_df)
       f <- as.formula(paste("y_train ~", paste(n[!n %in% "y_train"], collapse = " + ")))
       model = lm(f , data=new_df)
 
       temp[[temp_feature]] = summary(model)$r.squared
-
     }
     scoring <- Reduce(max, temp)
     scores[[temp_feature]] <- scoring
 
-    maxperj <- Reduce(max, scores)
-    maxper[[j]] <- maxperj
+    max_score <- Reduce(max, scores)
+    maxper[[j]] <- max_score
 
     # stopping criteria
     if (j > 2){
-      unlist_prev = unlist(scores)
-      previous = unlist_prev[j-1]
+      unlist_prev <- unlist(scores)
+      previous <- unlist_prev[j-1]
       previous = max(previous)
 
-      if ((maxperj - previous / previous) > threshold){ # percentage decrease in R^2 > threshold
+      if ((max_score - previous / previous) > threshold){ # percentage decrease in R^2 > threshold
         break
       }
     }
-    best_features <- c(best_features,names(scores)[which(scores==maxperj)])
+    best_features <- c(best_features,names(scores)[which(scores==max_score)])
     names(best_features) <- unlist(best_features)
   }
   return(names(best_features))
