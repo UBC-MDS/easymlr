@@ -17,11 +17,11 @@ feature_select <- function(X_train, y_train, threshold=0.05){
 
   # exception handling
   if (!any(class(X_train) == "data.frame")) {
-    stop("Expected a 'data.frame' object for `data`.")
+    stop("Expected a 'data.frame' object for X_train")
   }
 
   if (!any(class(y_train) == "numeric")) {
-    stop("Expected a numeric vector for y_train.")
+    stop("Expected a numeric vector for y_train")
   }
 
   if (sum(!(dim(X_train))==1) != 2){
@@ -33,15 +33,22 @@ feature_select <- function(X_train, y_train, threshold=0.05){
   }
 
   if (dim(X_train)[1] != length(y_train)){
-    stop("X and y have inconsistent numbers of samples. X:",
+    stop("X and y have inconsistent numbers of samples X:",
          dim(X_train)[1], ", y:", length(y_train))
   }
   if (!(class(threshold) == "numeric")) {
     stop("Threshold must be numeric")
   }
-  if (!(length(threshold) == 1)) {
+
+  if (length(threshold) != 1) {
     stop("Threshold must be a single value")
   }
+
+  # bound threshold - percentage change
+  if (threshold < 0 || threshold > 1) {
+    stop("Threshold must be a number between 0 and 1")
+  }
+
 
   # initialize variables
   maxper=list()
@@ -64,11 +71,11 @@ feature_select <- function(X_train, y_train, threshold=0.05){
       names(select_features) = unlist(select_features)
       select_features = as.character(select_features)
 
-      new_df = X_train[,select_features]
-      new_df$y_train <- as.vector(y_train)
+      new_df = X_train %>% select(select_features)
+      new_df = cbind(new_df, y_train)
 
-      n <- names(new_df)
-      f <- as.formula(paste("y_train ~", paste(n[!n %in% "y"], collapse = " + ")))
+      n <- colnames(new_df)
+      f <- as.formula(paste("y_train ~", paste(n[!n %in% "y_train"], collapse = " + ")))
       model = lm(f , data=new_df)
 
       temp[[temp_feature]] = summary(model)$r.squared
@@ -76,7 +83,6 @@ feature_select <- function(X_train, y_train, threshold=0.05){
     }
     scoring <- Reduce(max, temp)
     scores[[temp_feature]] <- scoring
-
 
     maxperj <- Reduce(max, scores)
     maxper[[j]] <- maxperj
