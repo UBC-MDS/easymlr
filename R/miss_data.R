@@ -16,10 +16,10 @@
 #' x_test_imputed <- miss_data(x_train, x_test, 'mean')[[2]]
 miss_data <- function(x_train, x_test, strategy) {
   if (!is.data.frame(x_train) | !is_tibble(x_train))
-    stop("The training set must be either a dataframe or a tibble")
+    stop("The input training set must be either a dataframe or a tibble")
 
   if (!is.data.frame(x_test) | !is_tibble(x_test))
-    stop("The test set must be either a dataframe or a tibble")
+    stop("The input test set must be either a dataframe or a tibble")
 
   if (!is.character(strategy))
     stop("The imputation strategy must be a string.")
