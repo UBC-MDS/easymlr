@@ -12,8 +12,8 @@
 #' @examples
 #' x_train <- data.frame('x' = c(400, NA, 330, NA), 'y' = c(24, NA, 30, 560))
 #' x_test <- data.frame('x' = c(NA, 130, 240, NA), 'y' = c(NA, 300, 450, 100))
-#' x_train_imputed <- miss_data(x_train, x_test, 'mean')[1]
-#' x_test_imputed <- miss_data(x_train, x_test, 'mean')[2]
+#' x_train_imputed <- miss_data(x_train, x_test, 'mean')[[1]]
+#' x_test_imputed <- miss_data(x_train, x_test, 'mean')[[2]]
 miss_data <- function(x_train, x_test, strategy) {
   if (!is.data.frame(x_train) | !is_tibble(x_train))
     stop("The training set must be either a dataframe or a tibble")
