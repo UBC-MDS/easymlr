@@ -5,12 +5,13 @@
 #'
 #' @param X The features of the training set
 #' @param y The target of the training set
-#' 
+#'
 #'
 #' @return a tibble
 
 #' @examples
-#' eda_analysis <- function(df) {
+#' eda_analysis <- function(df)
+
+eda_analysis <- function(df){
 
 }
-
