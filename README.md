@@ -7,7 +7,7 @@
 
 <!-- badges: end -->
 
-easymlr is an open-source library designed to perform exploratory data analysis, to help with missing data imputation and to give baseline models. Also, it assists in feature selection which is a common problem when undertaking a data science or machine learning analysis.
+easymlr is an open-source library designed to perform exploratory data analysis, to help with missing data imputation and to give baseline models. Also, it assists in feature selection which is a common problem when undertaking a data science or machine learning analysis. As it's name indicates, this function performs all task from eda to helping in choosing model for machine learning process very easily.
 
 
 ## Installation
@@ -32,7 +32,7 @@ This package contains four functions. All functions can be used on a dataset wit
 
 - eda: EDA data analysis will split the original data into train and test dataset and will generate a statistical report such as correlation between the variables, number of missing data, class imbalance and type of data present in the dataset.
 
-- Data imputation: It will handle missing data in the data frame.
+- Data imputation: It will handle only numerical missing data in the data frame.
 
 - Baseline Function: Baseline function will give users a quick check of the performance of the selected models as a baseline for further model training.
 
@@ -47,9 +47,9 @@ To our knowledge, there is no general-purpose library for performing the above t
 
 ## Usage
 
-```
-library(easymlr)
-```
+
+`library(easymlr)`
+
 
 
 | Task | Function  |
@@ -60,8 +60,6 @@ library(easymlr)
 | Compare model to select the best model| `baseline_fun(
     X_train, y_train, type="regression", metrics_1="accuracy", metrics_2="r2"
 )`|
-
--   TODO
 
 ## Documentation
 
