@@ -4,7 +4,7 @@
 \alias{baseline_fun}
 \title{Baseline function}
 \usage{
-baseline_fun(X, y, type = "regression", metric)
+baseline_fun(X, y, type = "regression")
 }
 \arguments{
 \item{X}{The features of the training set}
@@ -12,15 +12,13 @@ baseline_fun(X, y, type = "regression", metric)
 \item{y}{The target of the training set}
 
 \item{type}{What kind of supervised machine learning to use, regression or classification}
-
-\item{metric}{What kind of score metrics to use, possible values are "RMSE" and "Rsquared" for regression and "Accuracy" and "Kappa" for classification.}
 }
 \value{
-The validation score by 5-fold cross validation for the chosen model.
+The list of the result of 5-fold cross validation for the chosen model.
 }
 \description{
 Gives the scoring metrics of LinearRegression or LogisticRegression.
 }
 \examples{
-baseline_fun(X, y, type = 'regression', metric='RMSE')
+baseline_fun(X, y, type = 'regression')
 }

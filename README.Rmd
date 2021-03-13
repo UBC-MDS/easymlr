@@ -51,11 +51,11 @@ To our knowledge, there is no general-purpose library for performing the above t
 
 ## Dependencies
 
--   TODO
+-   R 4.0.3
 
 ## Usage
 
--   TODO
+`library(easymlr)`
 
 ## Documentation
 
