@@ -167,6 +167,7 @@ test_feature_input <- function(){
 }
 
 test_feature_input()
+test_feature_select()
 
 #' Test missing data function
 #'

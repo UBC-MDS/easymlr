@@ -14,7 +14,7 @@ miss_data(x_train, x_test, strategy)
 \item{strategy}{The imputation strategy as a string}
 }
 \value{
-x_train and x_test dataframe without any missing values.
+list containing the x_train and x_test dataframes without any missing values.
 }
 \description{
 Impute missing values with the strategy (mean, median) selected by the user.
@@ -22,5 +22,6 @@ Impute missing values with the strategy (mean, median) selected by the user.
 \examples{
 x_train <- data.frame('x' = c(400, NA, 330, NA), 'y' = c(24, NA, 30, 560))
 x_test <- data.frame('x' = c(NA, 130, 240, NA), 'y' = c(NA, 300, 450, 100))
-miss_data(x_train, x_test, 'mean')
+x_train_imputed <- miss_data(x_train, x_test, 'mean')[[1]]
+x_test_imputed <- miss_data(x_train, x_test, 'mean')[[2]]
 }
