@@ -68,7 +68,7 @@ above task together in the R ecosystem.
 |--------------------------------------------|-------------------------------------------------------------------------------------------|
 | Exploratory data analysis                  | `eda_analysis(df)`                                                                        |
 | Numerical data imputation                  | `miss_data(x_train, x_test, strategy="mean")`                                             |
-| Compare selected model to a baseline model | `baseline_fun(X_train, y_train, type="regression", metrics_1="accuracy", metrics_2="r2")` |
+| Compare selected model to a baseline model | `baseline_fun(X_train, y_train, type="regression")` |
 | Feature selection to reduce data dimension | `feature_select(X_train, y_train, threshold=0.05)`                                        |
 
 ## Example
