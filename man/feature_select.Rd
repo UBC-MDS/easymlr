@@ -9,9 +9,9 @@ feature_select(X_train, y_train, threshold = 0.05)
 \arguments{
 \item{X_train}{The training set of the data}
 
-\item{y_train}{The target of the data}
+\item{y_train}{The target of the training set data}
 
-\item{threshold}{user input threshold used for stopping criteria}
+\item{threshold}{user input threshold used for bounding features selected}
 }
 \value{
 List of best features
@@ -19,7 +19,7 @@ List of best features
 \description{
 Performs forward selection of features in the data by starting with an empty model,
 and iteratively adds features that improve the model's score. The algorithm stops once
-the increase of the accuracy from an additional features is smaller than the threshold.
+the decrease of the accuracy from an additional features is bigger than the threshold.
 }
 \examples{
 feature_select(X_train, y_train, threshold=0.05)
