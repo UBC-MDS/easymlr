@@ -15,12 +15,12 @@
 #' x_train_imputed <- miss_data(x_train, x_test, 'mean')[[1]]
 #' x_test_imputed <- miss_data(x_train, x_test, 'mean')[[2]]
 miss_data <- function(x_train, x_test, strategy) {
-  if (!is.data.frame(x_train) | !is_tibble(x_train)) {
-    stop("The input training set must be either a dataframe or a tibble")
+  if (!is.data.frame(x_train)) {
+    stop("The train set must be a dataframe")
   }
 
-  if (!is.data.frame(x_test) | !is_tibble(x_test)) {
-    stop("The input test set must be either a dataframe or a tibble")
+  if (!is.data.frame(x_test)) {
+    stop("The test set must be a dataframe")
   }
 
   if (!is.character(strategy)) {
@@ -28,7 +28,7 @@ miss_data <- function(x_train, x_test, strategy) {
   }
 
   if (strategy != "mean" && strategy != "median") {
-    stop("The Imputation strategies are only mean or median")
+    stop("The strategy should either be mean or median")
   }
 
 

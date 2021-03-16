@@ -148,7 +148,7 @@ test_feature_input <- function(){
     testthat::expect_error(feature_select(X_train, "helloworld", threshold = 0.05), "Expected a numeric vector for y_train")
     testthat::expect_error(feature_select(X_train, c("helloworld"), threshold = 0.05), "Expected a numeric vector for y_train")
     testthat::expect_error(feature_select(X_train, list(), threshold = 0.05), "Expected a numeric vector for y_train")
-    testthat::expect_error(feature_select(X_train, y_3d, threshold = 0.05), "Expected a numeric vector for y_train")
+    testthat::expect_error(feature_select(X_train, df_1d, threshold = 0.05), "Expected a numeric vector for y_train")
   })
 
   # test threshold
@@ -189,8 +189,8 @@ test_miss_data <- function() {
 
   test_that("The median output of the imputed values are accurate", {
     imputed_data <- miss_data(x_train, x_test, strategy="mean")
-    testthat::expect_equal(imputed_data[[1]]$y[2], 30)
-    testthat::expect_equal(imputed_data[[2]]$y[1], 300)
+    testthat::expect_equal(round(imputed_data[[1]]$y[2]), 205)
+    testthat::expect_equal(round(imputed_data[[2]]$y[1]), 283)
   })
 
 
