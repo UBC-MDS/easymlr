@@ -3,8 +3,7 @@
 #' @description
 #' splits the data into train and test dataframe, provides statistical summary of the variables for a dataframe. Additionally, the function provides a correlation metric of each numeric variable.
 #'
-#' @param X The features of the training set
-#' @param y The target of the training set
+#' @param df The features of the training set
 #'
 #'
 #' @return a list

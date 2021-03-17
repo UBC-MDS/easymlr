@@ -7,9 +7,7 @@
 eda_analysis(df)
 }
 \arguments{
-\item{X}{The features of the training set}
-
-\item{y}{The target of the training set}
+\item{df}{The features of the training set}
 }
 \value{
 a list
