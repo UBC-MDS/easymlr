@@ -7,16 +7,11 @@
 eda_analysis(df)
 }
 \arguments{
-\item{X}{The features of the training set}
-
-\item{y}{The target of the training set}
+\item{df}{The features of the training set}
 }
 \value{
 a list
 }
 \description{
 splits the data into train and test dataframe, provides statistical summary of the variables for a dataframe. Additionally, the function provides a correlation metric of each numeric variable.
-}
-\examples{
-eda_analysis(df)
 }

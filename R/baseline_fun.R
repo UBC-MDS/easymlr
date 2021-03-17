@@ -9,9 +9,9 @@
 #' @param type What kind of supervised machine learning to use, regression or classification
 #'
 #' @return The list of the result of 5-fold cross validation for the chosen model.
+#' @export
 #'
 #' @examples
-#' baseline_fun(X, y, type = 'regression')
 
 
 baseline_fun <- function(X, y, type = 'regression') {

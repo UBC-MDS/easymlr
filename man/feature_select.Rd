@@ -21,6 +21,3 @@ Performs forward selection of features in the data by starting with an empty mod
 and iteratively adds features that improve the model's score. The algorithm stops once
 the decrease of the accuracy from an additional features is bigger than the threshold.
 }
-\examples{
-feature_select(X_train, y_train, threshold=0.05)
-}

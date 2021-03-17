@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # easymlr
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/UBC-MDS/easymlr/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/easymlr/actions)
 <!-- badges: end -->
 
 easymlr is an open-source library designed to perform exploratory data analysis, to help with missing data imputation and to give baseline models. Also, it assists in feature selection which is a common problem when undertaking a data science or machine learning analysis. As it's name indicates, this function performs all task from eda to helping in choosing model for machine learning process very easily.
