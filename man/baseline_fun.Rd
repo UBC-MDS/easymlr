@@ -19,6 +19,3 @@ The list of the result of 5-fold cross validation for the chosen model.
 \description{
 Gives the scoring metrics of LinearRegression or LogisticRegression.
 }
-\examples{
-baseline_fun(X, y, type = 'regression')
-}

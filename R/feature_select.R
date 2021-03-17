@@ -10,9 +10,9 @@
 #' @param threshold user input threshold used for bounding features selected
 #'
 #' @return List of best features
+#' @export
 #'
 #' @examples
-#' feature_select(X_train, y_train, threshold=0.05)
 feature_select <- function(X_train, y_train, threshold=0.05){
 
   # exception handling
@@ -70,7 +70,7 @@ feature_select <- function(X_train, y_train, threshold=0.05){
       names(select_features) <- unlist(select_features)
       select_features <- as.character(select_features)
 
-      new_df <- X_train %>% select(select_features)
+      new_df <- X_train %>% dplyr::select(select_features)
       new_df <- cbind(new_df, y_train)
 
       n <- colnames(new_df)
