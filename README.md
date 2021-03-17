@@ -4,6 +4,8 @@
 # easymlr
 
 <!-- badges: start -->
+[![test-coverage](https://github.com/UBC-MDS/easymlr/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/UBC-MDS/easymlr/actions/workflows/test-coverage.yaml)
+[![R-CMD-check](https://github.com/UBC-MDS/easymlr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/UBC-MDS/easymlr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 easymlr is an open-source library designed to perform exploratory data
