@@ -1,0 +1,223 @@
+---
+title: "my-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Exploratoy Analysis Tools for beginners 
+
+This package is designated for assisting in kick-starting data science projects. The `easymlr` package works to clean data, impute missing values, perform feature selection, and baseline modelling.
+
+## Functions
+
+`eda_analysis`
+  
+* Splits the original data into train and test dataset and generates a statistical report such as correlation between the variables, number of missing data, class imbalance and type of data present in the dataset.
+
+`miss_data`
+
+* Imputes missing data in the data frame using one of mean or median methods.
+
+`baseline_fun`
+  
+* Gives users a quick check of the performance of the selected sklearn models compared to a baseline model, upon which the model can be improved.
+
+`feature_select`
+
+* Performs forward feature selection of all numeric features in a given training set.
+
+
+### Installation
+
+`easymlr` is still in project development. As a result, it cannot be found in [CRAN](https://cran.r-project.org/) at this time.
+
+Package installation in R:
+
+```{r, eval=FALSE}
+#install.packages("easymlr")
+```
+The development version can be found in [Github](https://github.com/).
+
+```{r, eval=FALSE}
+install.packages("devtools")
+devtools::install_github("UBC-MDS/easymlr")
+```
+
+## Usage Example
+
+Below is an example of how one can use rpuck.
+
+To load the package in R:
+
+```{r setup}
+library(easymlr)
+```
+
+Using Boston data set for illustration purposes:
+
+```{r import}
+library(caret)
+library(rlist)
+library(e1071)
+library(dplyr)
+library(magrittr)
+library(MASS)
+attach(Boston)
+data <- Boston
+```
+
+To obtain some exploratory results such as aa data summary and correlation matrix:
+
+```{r eda}
+eda_analysis(data)
+#> eda_analysis(data)
+#$data_head
+#        crim zn indus chas   nox    rm   age    dis rad tax ptratio  black lstat medv
+#415 45.74610  0 18.10    0 0.693 4.519 100.0 1.6582  24 666    20.2  88.27 36.98  7.0
+#463  6.65492  0 18.10    0 0.713 6.317  83.0 2.7344  24 666    20.2 396.90 13.99 19.5
+#179  0.06642  0  4.05    0 0.510 6.860  74.4 2.9153   5 296    16.6 391.27  6.92 29.9
+#14   0.62976  0  8.14    0 0.538 5.949  61.8 4.7075   4 307    21.0 396.90  8.26 20.4
+#195  0.01439 60  2.93    0 0.401 6.604  18.8 6.2196   1 265    15.6 376.70  4.38 29.1
+#426 15.86030  0 18.10    0 0.679 5.896  95.4 1.9096  24 666    20.2   7.68 24.39  8.3
+#
+#$data_tail
+#       crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat medv
+#75  0.07896  0 12.83    0 0.437 6.273  6.0 4.2515   5 398    18.7 394.92  6.78 24.1
+#100 0.06860  0  2.89    0 0.445 7.416 62.5 3.4952   2 276    18.0 396.90  6.19 33.2
+#274 0.22188 20  6.96    1 0.464 7.691 51.8 4.3665   3 223    18.6 390.77  6.58 35.2
+#484 2.81838  0 18.10    0 0.532 5.762 40.3 4.0983  24 666    20.2 392.92 10.42 21.8
+#296 0.12932  0 13.92    0 0.437 6.678 31.1 5.9604   4 289    16.0 396.90  6.27 28.6
+#357 8.98296  0 18.10    1 0.770 6.212 97.4 2.1222  24 666    20.2 377.73 17.60 17.8
+#
+#$type
+#[1] "'data.frame':\t379 obs. of  14 variables:\n $ crim   : num  45.7461 6.6549 0.0664 0.6298 0.0144 ...\n $ zn     : num  0 0 0 0 60 0 33 0 70 0 ...\n $ indus  : num  18.1 #18.1 4.05 8.14 2.93 ...\n $ chas   : int  0 0 0 0 0 0 0 0 0 0 ...\n $ nox    : num  0.693 0.713 0.51 0.538 0.401 0.679 0.472 0.547 0.4 0.504 ...\n $ rm     : num  4.52 6.32 #6.86 5.95 6.6 ...\n $ age    : num  100 83 74.4 61.8 18.8 95.4 58.1 82.6 20.1 17 ...\n $ dis    : num  1.66 2.73 2.92 4.71 6.22 ...\n $ rad    : int  24 24 5 4 1 24 7 6 5 8 #...\n $ tax    : num  666 666 296 307 265 666 222 432 358 307 ...\n $ ptratio: num  20.2 20.2 16.6 21 15.6 20.2 18.4 17.8 14.8 17.4 ...\n $ black  : num  88.3 396.9 391.3 #396.9 376.7 ...\n $ lstat  : num  36.98 13.99 6.92 8.26 4.38 ...\n $ medv   : num  7 19.5 29.9 20.4 29.1 8.3 28.4 19.2 22.5 46.7 ..."
+#
+#$data_summary
+#      crim                zn            indus            chas              nox              rm             age              dis              rad              tax       
+# Min.   : 0.01096   Min.   : 0.00   Min.   : 0.46   Min.   :0.00000   Min.   :0.385   Min.   :3.561   Min.   :  2.90   Min.   : 1.130   Min.   : 1.000   Min.   :187.0  
+# 1st Qu.: 0.07694   1st Qu.: 0.00   1st Qu.: 5.13   1st Qu.:0.00000   1st Qu.:0.448   1st Qu.:5.890   1st Qu.: 43.55   1st Qu.: 2.108   1st Qu.: 4.000   1st Qu.:279.0  
+# Median : 0.24522   Median : 0.00   Median : 8.56   Median :0.00000   Median :0.532   Median :6.219   Median : 76.70   Median : 3.332   Median : 5.000   Median :330.0  
+# Mean   : 3.80380   Mean   :12.22   Mean   :11.02   Mean   :0.07388   Mean   :0.551   Mean   :6.274   Mean   : 68.04   Mean   : 3.855   Mean   : 9.464   Mean   :407.2  
+# 3rd Qu.: 3.44487   3rd Qu.:20.00   3rd Qu.:18.10   3rd Qu.:0.00000   3rd Qu.:0.624   3rd Qu.:6.617   3rd Qu.: 93.85   3rd Qu.: 5.266   3rd Qu.:24.000   3rd Qu.:666.0  
+# Max.   :88.97620   Max.   :95.00   Max.   :27.74   Max.   :1.00000   Max.   :0.871   Max.   :8.725   Max.   :100.00   Max.   :12.127   Max.   :24.000   Max.   :711.0  
+#    ptratio          black            lstat            medv      
+# Min.   :12.60   Min.   :  2.52   Min.   : 1.73   Min.   : 5.00  
+# 1st Qu.:17.00   1st Qu.:375.37   1st Qu.: 6.74   1st Qu.:17.05  
+# Median :19.00   Median :391.83   Median :11.10   Median :21.40  
+# Mean   :18.44   Mean   :360.44   Mean   :12.51   Mean   :22.51  
+# 3rd Qu.:20.20   3rd Qu.:396.18   3rd Qu.:16.55   3rd Qu.:25.00  
+# Max.   :22.00   Max.   :396.90   Max.   :37.97   Max.   :50.00  
+#
+#$correlation
+#               crim          zn       indus        chas         nox          rm         age         dis         rad         tax    ptratio       black       lstat       medv
+#crim     1.00000000 -0.20395608  0.40441061 -0.06453137  0.41614838 -0.23407104  0.35491432 -0.37606675  0.62227251  0.57389260  0.2899730 -0.38418342  0.46301855 -0.3870408
+#zn      -0.20395608  1.00000000 -0.55081539 -0.03041488 -0.54032822  0.32323813 -0.59753579  0.68696694 -0.32728051 -0.33497502 -0.3813561  0.17085233 -0.42298607  0.3627880
+#indus    0.40441061 -0.55081539  1.00000000  0.05889787  0.77016558 -0.41856606  0.64751102 -0.71307630  0.60363332  0.74517303  0.3623348 -0.35235465  0.59813590 -0.4724597
+#chas    -0.06453137 -0.03041488  0.05889787  1.00000000  0.07472734  0.08300942  0.08404932 -0.09126889 -0.04204461 -0.07045442 -0.1539367  0.07388539 -0.04322367  0.2042991
+#nox      0.41614838 -0.54032822  0.77016558  0.07472734  1.00000000 -0.32437500  0.74649752 -0.76827458  0.62049041  0.67443711  0.1967464 -0.35600441  0.59731467 -0.4192315
+#rm      -0.23407104  0.32323813 -0.41856606  0.08300942 -0.32437500  1.00000000 -0.28893820  0.23881732 -0.25134673 -0.34064494 -0.3993983  0.15631216 -0.61580043  0.6874503
+#age      0.35491432 -0.59753579  0.64751102  0.08404932  0.74649752 -0.28893820  1.00000000 -0.76828971  0.46451741  0.52524282  0.2658968 -0.27260520  0.60587839 -0.3840890
+#dis     -0.37606675  0.68696694 -0.71307630 -0.09126889 -0.76827458  0.23881732 -0.76828971  1.00000000 -0.50181368 -0.54185312 -0.2310542  0.28146837 -0.51772722  0.2531134
+#rad      0.62227251 -0.32728051  0.60363332 -0.04204461  0.62049041 -0.25134673  0.46451741 -0.50181368  1.00000000  0.90230579  0.4650850 -0.43490807  0.50873662 -0.3833584
+#tax      0.57389260 -0.33497502  0.74517303 -0.07045442  0.67443711 -0.34064494  0.52524282 -0.54185312  0.90230579  1.00000000  0.4628254 -0.42991883  0.56777999 -0.4737882
+#ptratio  0.28997304 -0.38135610  0.36233478 -0.15393675  0.19674639 -0.39939826  0.26589682 -0.23105417  0.46508502  0.46282537  1.0000000 -0.16962501  0.40980838 -0.5283497
+#black   -0.38418342  0.17085233 -0.35235465  0.07388539 -0.35600441  0.15631216 -0.27260520  0.28146837 -0.43490807 -0.42991883 -0.1696250  1.00000000 -0.39572085  0.3274679
+#lstat    0.46301855 -0.42298607  0.59813590 -0.04322367  0.59731467 -0.61580043  0.60587839 -0.51772722  0.50873662  0.56777999  0.4098084 -0.39572085  1.00000000 -0.7478470
+#medv    -0.38704083  0.36278797 -0.47245972  0.20429913 -0.41923155  0.68745029 -0.38408904  0.25311341 -0.38335839 -0.47378822 -0.5283497  0.32746786 -0.74784699  1.0000000
+```
+
+To impute missing values, let us first add some NA values to the data frame from the Boston dataset.
+
+```{r imp1}
+data[1,] <- 0 # convert first row values to 0
+data[data == 0] <- NA # replace 0 values by NA
+data[1,]
+```
+
+We can now impute the missing values in the first row by the mean values:
+
+```{r imp2}
+imputed_df <- miss_data(data, data, 'mean')
+imputed_df[[1]][1,]
+#     crim       zn    indus chas     nox      rm      age     dis     rad      tax  ptratio    black    lstat    medv
+#1 3.62067 43.09774 11.15426    1 0.55473 6.28406 68.58158 3.79446 9.56634 408.4594 18.46178 356.5944 12.66826 22.5299
+```
+
+Using median:
+
+```{r imp3}
+imputed_df <- miss_data(data, data, 'median')
+imputed_df[[1]][1,]
+#     crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat medv
+#1 0.25915 33  9.69    1 0.538 6.208 77.7 3.1992   5 330    19.1 391.43 11.38 21.2
+```
+
+We could use the `baseline_fun` function to obtain some initial modelling results on the Boston dataset. First, separate the dataframe into features and target dataframes. Next, call the function, specifying the appropriate modelling type.
+
+```{r base1}
+data <- Boston
+X <- data [,0:13]
+y <- as.data.frame(data [,14])
+
+baseline_fun(X, y, type="regression")
+#> baseline_fun(X, y, type="regression")
+#Linear Regression 
+#
+#506 samples
+# 13 predictor
+#
+#No pre-processing
+#Resampling: Cross-Validated (5 fold) 
+#Summary of sample sizes: 405, 403, 405, 406, 405 
+#Resampling results:
+#
+#  RMSE     Rsquared   MAE     
+#  4.86746  0.7202505  3.424126
+#
+#Tuning parameter 'intercept' was held constant at a value of TRUE
+```
+
+Finally, we can perform feature selection of the Boston dataset using `feature_select`.
+
+```{r feat}
+data <- Boston
+X <- data [,0:13]
+y <- data [,14]
+
+#feature_select(X, y, threshold=0.05)
+
+#> feature_select(X, y, threshold=0.05)
+#[1] "lstat"   "black"   "ptratio"
+```
+
+Here, the algorithm begins with building a linear model with no features. At each iteration, the algorirthm fits linear models for all unselected features. The feature with the lowest error score is added to the model, one at a time. The process continues until the percentage decrease in model accuracy with the additional of a given feature, is less than the threshold specified by the user, 0.05 by default.
+
+## Tests
+
+There is a variety of tests for each function in the `tests\testthat` directory. The tests check that the functions error out appropriately and that proper function calls return the correct data objects.
+
+## R Ecosystem
+
+There is no general-purpose library for performing the above task in the R ecosystem.
+
+### Dependencies
+
+R version 4.2 and R packages:
+
+| Package                                                                   | Minimum Supported Version |
+| ------------------------------------------------------------------------- | ------------------------- |
+| [tidyverse](https://cran.r-project.org/web/packages/tidyverse/index.html) | 0.8.3              |       
+| [rlist](https://cran.r-project.org/web/packages/rlist/index.html)         | 	0.4.6.1          |
+| [testthat](https://cran.r-project.org/web/packages/testthat/index.html)   | 2.3.1              |
+| [MASS](https://cran.r-project.org/web/packages/MASS/index.html)       | 7.3                  |

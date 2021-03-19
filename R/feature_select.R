@@ -13,6 +13,13 @@
 #' @export
 #'
 #' @examples
+#' library(MASS)
+#' attach(Boston)
+#' data <- Boston
+#' X <- data [,0:13]
+#' y <- data [,14]
+#' feature_select(X, y, threshold=0.05)
+
 feature_select <- function(X_train, y_train, threshold=0.05){
 
   # exception handling
@@ -91,7 +98,7 @@ feature_select <- function(X_train, y_train, threshold=0.05){
       previous <- unlist_prev[j-1]
       previous = max(previous)
 
-      if ((max_score - previous / previous) > threshold){ # percentage decrease in R^2 > threshold
+      if (((max_score - previous) / previous) > threshold){ # percentage decrease in R^2 > threshold
         break
       }
     }
