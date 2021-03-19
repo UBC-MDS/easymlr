@@ -5,7 +5,9 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/UBC-MDS/easymlr/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/easymlr/actions)
+[![codecov](https://codecov.io/gh/UBC-MDS/easymlr/branch/main/graph/badge.svg?token=U18JB42TJS)](https://codecov.io/gh/UBC-MDS/easymlr)
+[![R-CMD-check](https://github.com/UBC-MDS/easymlr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/UBC-MDS/easymlr/actions/workflows/R-CMD-check.yaml)
+
 <!-- badges: end -->
 
 easymlr is an open-source library designed to perform exploratory data
