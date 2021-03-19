@@ -10,6 +10,9 @@
 #' @export
 #'
 #' @examples
+#' res <- eda_analysis(mtcars)
+#' head <- res$data_head
+#' summary <- res$data_summary
 
 eda_analysis <- function(df) {
   if(class(df) != 'data.frame'){
