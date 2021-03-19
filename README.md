@@ -4,7 +4,7 @@
 # easymlr
 
 <!-- badges: start -->
-[![test-coverage](https://github.com/UBC-MDS/easymlr/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/UBC-MDS/easymlr/actions/workflows/test-coverage.yaml)
+[![codecov](https://codecov.io/gh/UBC-MDS/easymlr/branch/main/graph/badge.svg?token=U18JB42TJS)](https://codecov.io/gh/UBC-MDS/easymlr)
 [![R-CMD-check](https://github.com/UBC-MDS/easymlr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/UBC-MDS/easymlr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
