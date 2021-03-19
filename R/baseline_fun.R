@@ -12,6 +12,11 @@
 #' @export
 #'
 #' @examples
+#' data(mtcars)
+#' mtcars$vs <- factor(mtcars$vs)
+#' x <- mtcars[1:2]
+#' y <- mtcars[8]
+#' model_cla <- baseline_fun(x, y, type = 'classification')
 
 
 baseline_fun <- function(X, y, type = 'regression') {
