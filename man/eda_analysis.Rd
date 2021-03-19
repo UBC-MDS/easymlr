@@ -15,3 +15,8 @@ a list
 \description{
 splits the data into train and test dataframe, provides statistical summary of the variables for a dataframe. Additionally, the function provides a correlation metric of each numeric variable.
 }
+\examples{
+res <- eda_analysis(mtcars)
+head <- res$data_head
+summary <- res$data_summary
+}
