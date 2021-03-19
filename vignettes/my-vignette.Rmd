@@ -42,11 +42,7 @@ This package is designated for assisting in kick-starting data science projects.
 
 `easymlr` is still in project development. As a result, it cannot be found in [CRAN](https://cran.r-project.org/) at this time.
 
-Package installation in R:
 
-```{r, eval=FALSE}
-#install.packages("easymlr")
-```
 The development version can be found in [Github](https://github.com/).
 
 ```{r, eval=FALSE}

@@ -4,8 +4,10 @@
 # easymlr
 
 <!-- badges: start -->
+
 [![codecov](https://codecov.io/gh/UBC-MDS/easymlr/branch/main/graph/badge.svg?token=U18JB42TJS)](https://codecov.io/gh/UBC-MDS/easymlr)
 [![R-CMD-check](https://github.com/UBC-MDS/easymlr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/UBC-MDS/easymlr/actions/workflows/R-CMD-check.yaml)
+
 <!-- badges: end -->
 
 easymlr is an open-source library designed to perform exploratory data
@@ -17,17 +19,12 @@ choosing model for machine learning process very easily.
 
 ## Installation
 
-You can install the released version of easymlr from
-[CRAN](https://CRAN.R-project.org) with:
+Package installation in R:
+
+The development version can be found in [Github](https://github.com/).
 
 ``` r
-install.packages("easymlr")
-```
-
-And the development version from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
+install.packages("devtools")
 devtools::install_github("UBC-MDS/easymlr")
 ```
 
@@ -36,56 +33,95 @@ devtools::install_github("UBC-MDS/easymlr")
 This package introduces a data science enthusiast, with little to no
 knowledge of machine learning, to the common steps required when
 undertaking a Supervised learning analysis. The package contains four
-functions that accept a pandas DataFrame. All functions can be used on a
-dataset with numerical features. The functions might have their own
-required and optional arguments.
+functions that taken in data and perform a task. All functions can be
+used on a dataset with numerical features. Each function has their own
+required arguements and optional arguments, with some default
+parameters.
 
--   **eda**: The `eda` function will split the original data into train
-    and test dataset and will generate a statistical report such as
-    correlation between the variables, number of missing data, class
-    imbalance and type of data present in the dataset.
+  - **eda\_analysis**: The `eda_analysis` function will split the
+    original data into train and test dataset and will generate a
+    statistical report such as correlation between the variables, number
+    of missing data, class imbalance and type of data present in the
+    dataset.
 
--   **miss\_data**: The `miss_data` function will handle missing
-    numerical data in the data frame.
+  - **miss\_data**: The `miss_data` function will impute missing data in
+    the data frame using one of mean or median methods.
 
--   **baseline\_fun**: The `baseline_fun` function will give users a
+  - **baseline\_fun**: The `baseline_fun` function will give users a
     quick check of the performance of the selected sklearn models
     compared to a baseline model, upon which the model can be improved.
 
--   **feature\_select**: The `feature_select` function will remove
-    redundant features based on the forward selection.
+  - **feature\_select**: The `feature_select` function will remove
+    redundant features using a forward selection iterative algorithm.
 
-## Relevance to the R Ecosystem
+You can also find function descriptions and their use cases in [package
+vignettes](https://htmlpreview.github.io/?https://raw.githubusercontent.com/UBC-MDS/easymlr/main/docs/articles/my-vignette.html).
 
-To our knowledge, there is no general-purpose library for performing the
-above task together in the R ecosystem.
+## Documentation
 
-## Dependencies
+  - [Vignettes](https://htmlpreview.github.io/?https://raw.githubusercontent.com/UBC-MDS/easymlr/main/docs/articles/my-vignette.html)
 
--   R 4.0.3
+## Usage Example
 
-## Usage
-
-| Task                                       | Function                                                                                  |
-|--------------------------------------------|-------------------------------------------------------------------------------------------|
-| Exploratory data analysis                  | `eda_analysis(df)`                                                                        |
-| Numerical data imputation                  | `miss_data(x_train, x_test, strategy="mean")`                                             |
-| Compare selected model to a baseline model | `baseline_fun(X_train, y_train, type="regression")` |
-| Feature selection to reduce data dimension | `feature_select(X_train, y_train, threshold=0.05)`                                        |
-
-## Example
+This is a basic example demonstration of how users may use the `easymlr`
+package.
 
 ``` r
 library(easymlr)
 
-df <- data.frame('x' = c(400, NA, 300, NA), 'y' = c(24, NA, 30, 560))
+library(MASS)
+attach(Boston)
+data <- Boston
+X <- data [,0:13]
+Y <- as.data.frame(data [,14])
+y <- data [,14]
 
-- eda <- eda_analysis(df)
-- imputed_data <- miss_data(x_train, x_test, strategy="mean")
-- results = baseline_fun(X, y, type = 'regression')
-- best_features = feature_select(X_train, y_train, threshold=0.05)
+eda_results <- eda_analysis(X)
 
+# SAMPLE OUTPUT
+#> eda_analysis(X)
+#$data_head
+#        crim zn indus chas   nox    rm   age    dis rad tax ptratio  black lstat
+#415 45.74610  0 18.10    0 0.693 4.519 100.0 1.6582  24 666    20.2  88.27 36.98
+#463  6.65492  0 18.10    0 0.713 6.317  83.0 2.7344  24 666    20.2 396.90 13.99
+#179  0.06642  0  4.05    0 0.510 6.860  74.4 2.9153   5 296    16.6 391.27  6.92
+#14   0.62976  0  8.14    0 0.538 5.949  61.8 4.7075   4 307    21.0 396.90  8.26
+#195  0.01439 60  2.93    0 0.401 6.604  18.8 6.2196   1 265    15.6 376.70  4.38
+#426 15.86030  0 18.10    0 0.679 5.896  95.4 1.9096  24 666    20.2   7.68 24.39
+
+imputed_data <- miss_data(data, data, 'mean')
+
+# SAMPLE OUTPUT
+# imputed_df[[1]][1,]
+#     crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat medv
+#1 0.25915 33  9.69    1 0.538 6.208 77.7 3.1992   5 330    19.1 391.43 11.38 21.2
+
+baseline_model <- baseline_fun(X, Y, type = 'regression')
+# SAMPLE OUTPUT - LINEAR REGRESSION MODEL SUMMARU
+# baseline_model
+#  RMSE     Rsquared   MAE     
+#  4.86746  0.7202505  3.424126
+
+best_features <- feature_select(X, y, threshold=0.05)
+#> best_features
+#[1] "lstat"   "black"   "ptratio"
 ```
+
+## Relevance to the R Ecosystem
+
+There is no general-purpose library for performing the above task in the
+R ecosystem.
+
+## Dependencies
+
+  - R version 4.0.3
+
+| Package                                                                   | Minimum Supported Version |
+| ------------------------------------------------------------------------- | ------------------------- |
+| [tidyverse](https://cran.r-project.org/web/packages/tidyverse/index.html) | 0.8.3                     |
+| [rlist](https://cran.r-project.org/web/packages/rlist/index.html)         | 0.4.6.1                   |
+| [testthat](https://cran.r-project.org/web/packages/testthat/index.html)   | 2.3.1                     |
+| [MASS](https://cran.r-project.org/web/packages/MASS/index.html)           | 7.3                       |
 
 ## Contributors
 
@@ -98,7 +134,7 @@ Development leaders:
 
 ## Code of conduct
 
-Hi, please ensure to adhere to the [code of
+Please ensure to adhere to the [code of
 conduct](https://github.com/UBC-MDS/easymlr/blob/main/CODE_OF_CONDUCT.md)
 if you would like to contrtibute to this project.
 
