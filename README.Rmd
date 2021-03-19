@@ -49,11 +49,19 @@ This package introduces a data science enthusiast, with little to no knowledge o
 
 
 ## Relevance to the R Ecosystem
-To our knowledge, there is no general-purpose library for performing the above task together in the R ecosystem.
+
+There is no general-purpose library for performing the above task in the R ecosystem.
 
 ## Dependencies
 
--  R 4.0.3
+-  R version 4.0.3
+
+| Package                                                                   | Minimum Supported Version |
+| ------------------------------------------------------------------------- | ------------------------- |
+| [tidyverse](https://cran.r-project.org/web/packages/tidyverse/index.html) | 0.8.3              |       
+| [rlist](https://cran.r-project.org/web/packages/rlist/index.html)         | 	0.4.6.1          |
+| [testthat](https://cran.r-project.org/web/packages/testthat/index.html)   | 2.3.1              |
+| [MASS](https://cran.r-project.org/web/packages/MASS/index.html)       | 7.3                  |
 
 
 ## Usage
@@ -69,6 +77,8 @@ To our knowledge, there is no general-purpose library for performing the above t
 
 ## Example 
 
+[here]()
+
 ``` R
 library(easymlr)
 
@@ -76,14 +86,11 @@ df <- data.frame('x' = c(400, NA, 300, NA), 'y' = c(24, NA, 30, 560))
 
 - eda <- eda_analysis(df)
 - imputed_data <- miss_data(x_train, x_test, strategy="mean")
-- results = baseline_fun(X, y, type = 'regression')
-- best_features = feature_select(X_train, y_train, threshold=0.05)
+- results <- baseline_fun(X, y, type = 'regression')
+- best_features <- feature_select(X_train, y_train, threshold=0.05)
 
 
 ```
-
-
-
 
 
 ## Contributors
@@ -97,7 +104,7 @@ Development leaders:
     
 ## Code of conduct 
 
-Hi, please ensure to adhere to the [code of conduct](https://github.com/UBC-MDS/easymlr/blob/main/CODE_OF_CONDUCT.md) if you would like to contrtibute to this project.
+Please ensure to adhere to the [code of conduct](https://github.com/UBC-MDS/easymlr/blob/main/CODE_OF_CONDUCT.md) if you would like to contrtibute to this project.
 
 ## Contributors
 

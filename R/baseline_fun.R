@@ -18,7 +18,6 @@
 #' y <- mtcars[8]
 #' model_cla <- baseline_fun(x, y, type = 'classification')
 
-
 baseline_fun <- function(X, y, type = 'regression') {
   if(class(X) != 'data.frame'){
     stop('X should be a dataframe')}
