@@ -19,3 +19,10 @@ The list of the result of 5-fold cross validation for the chosen model.
 \description{
 Gives the scoring metrics of LinearRegression or LogisticRegression.
 }
+\examples{
+data(mtcars)
+mtcars$vs <- factor(mtcars$vs)
+x <- mtcars[1:2]
+y <- mtcars[8]
+model_cla <- baseline_fun(x, y, type = 'classification')
+}
