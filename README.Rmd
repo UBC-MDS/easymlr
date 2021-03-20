@@ -97,7 +97,7 @@ best_features <- feature_select(X, y, threshold=0.05)
 
 ## Relevance to the R Ecosystem
 
-There is no general-purpose library for performing the above task in the R ecosystem.
+There are some packages that help with missing data imputation in the R-ecosystem such as Hmisc, missForest, Amelia and mice. There are also some packages that help feature selection such as CARET package. However, to our knowledge, there is no general-purpose library for performing the above task in the R ecosystem.
 
 ## Dependencies
 
